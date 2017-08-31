@@ -5,11 +5,11 @@ const chess = function (number) {
 	else {
 		var chessDesk = '';
 		for (var i = 0; i < number; i++) {
-	      for (var j = 0; j < number; j++) {
-	      	chessDesk += ((i + j)%2 == 0) ? '*' : ' ';
-	      }
-	      chessDesk += '\n';
-	    }
-	    return chessDesk;
+	      		for (var j = 0; j < number; j++) {
+	      			chessDesk += ((i + j)%2 == 0) ? '*' : ' ';
+	      		}
+	      		chessDesk += '\n';
+		}
+	    	return chessDesk;
 	}
 };
