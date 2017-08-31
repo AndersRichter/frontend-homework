@@ -1,72 +1,28 @@
 'use strict';
 
-QUnit.module('Тестируем функцию chess', function () {
-	QUnit.test('Нельзя ввести не число', function (assert) {
-		assert.strictEqual(chess('Hello'), null);
-		assert.strictEqual(chess('|(o_o)|'), null);
+QUnit.module('Тестируем функцию max', function () {
+	QUnit.test('Возвращает максимальное из трёх положительных чисел', function (assert) {
+		assert.strictEqual(max([1, 2, 3]), 3, 'max([1, 2, 3]) === 3');
+		assert.strictEqual(max([3, 2, 1]), 3, 'max([3, 2, 1]) === 3');
 	});
 
-	QUnit.test('Шахматной доски 0 на 0 не бывает', function (assert) {
-		assert.strictEqual(chess(0), null);
-		assert.strictEqual(chess('0'), null);
+	QUnit.test('Возвращает максимальное из трёх отрицательных чисел', function (assert) {
+		assert.strictEqual(max([-1, -2, -3]), -1, 'max([-1, -2, -3]) === -1');
+		assert.strictEqual(max([-3, -2, -1]), -1, 'max([-3, -2, -1]) === -1');
 	});
 
-	QUnit.test('Шахматной доски 1 на 1 не бывает', function (assert) {
-		assert.strictEqual(chess(1), null);
-		assert.strictEqual(chess('1'), null);
+	QUnit.test('Возвращает максимальное из трёх чисел разных знаков', function (assert) {
+		assert.strictEqual(max([-1, 0, 1]), 1, 'max([-1, 0, 1]) === 1');
+		assert.strictEqual(max([1, 0, -1]), 1, 'max([1, 0, -1]) === 1');
 	});
 
-	QUnit.test('Шахматная доска 2 на 2', function (assert) {
-		const expected =
-			'* \n' +
-			' *\n' ;
-		assert.strictEqual(chess(2), expected);
-		assert.strictEqual(chess('2'), expected);
+	QUnit.test('Работает правильно с одинаковыми числами', function (assert) {
+		assert.strictEqual(max([0, 0, 0]), 0, 'max([0, 0, 0]) === 0');
+		assert.strictEqual(max([42, 42, 42]), 42, 'max([42, 42, 42]) === 42');
 	});
 
-	QUnit.test('Шахматная доска 3 на 3', function (assert) {
-		const expected =
-			'* *\n' +
-			' * \n' +
-			'* *\n' ;
-		assert.strictEqual(chess(3), expected);
-		assert.strictEqual(chess('3'), expected);
+	QUnit.test('Работает правильно со специальными константами', function (assert) {
+		assert.strictEqual(max([Infinity, 100000, 0]), Infinity);
+		assert.strictEqual(max([0, -1000, -Infinity]), 0);
 	});
-
-	QUnit.test('Шахматная доска 8 на 8', function (assert) {
-		const expected =
-			'* * * * \n' +
-			' * * * *\n' +
-			'* * * * \n' +
-			' * * * *\n' +
-			'* * * * \n' +
-			' * * * *\n' +
-			'* * * * \n' +
-			' * * * *\n' ;
-		assert.strictEqual(chess(8), expected);
-		assert.strictEqual(chess('8'), expected);
-	});
-
-	QUnit.test('Шахматная доска 16 на 16', function (assert) {
-		const expected =
-			'* * * * * * * * \n' +
-			' * * * * * * * *\n' +
-			'* * * * * * * * \n' +
-			' * * * * * * * *\n' +
-			'* * * * * * * * \n' +
-			' * * * * * * * *\n' +
-			'* * * * * * * * \n' +
-			' * * * * * * * *\n' +
-			'* * * * * * * * \n' +
-			' * * * * * * * *\n' +
-			'* * * * * * * * \n' +
-			' * * * * * * * *\n' +
-			'* * * * * * * * \n' +
-			' * * * * * * * *\n' +
-			'* * * * * * * * \n' +
-			' * * * * * * * *\n' ;
-		assert.strictEqual(chess(16), expected);
-		assert.strictEqual(chess('16'), expected);
-	});
-
 });
