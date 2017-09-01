@@ -1,7 +1,7 @@
 'use strict';
 
 const chess = function (number) {
-	if (isNaN(number) || number <= 1) {
+	if (Number.isNaN(+number) || number <= 1) {
 		return null;
 	}
 	let chessDesk = '';
